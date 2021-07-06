@@ -1,0 +1,35 @@
+{
+  "name": "ec2_graph_notebook",
+  "version": "0.1.0",
+  "bin": {
+    "ec2_graph_notebook": "bin/ec2_graph_notebook.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "1.110.0",
+    "@types/jest": "^26.0.10",
+    "@types/node": "10.17.27",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.2.0",
+    "aws-cdk": "1.110.0",
+    "ts-node": "^9.0.0",
+    "typescript": "~3.9.7"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-cognito": "^1.111.0",
+    "@aws-cdk/aws-ec2": "1.111.0",
+    "@aws-cdk/aws-elasticloadbalancingv2": "1.111.0",
+    "@aws-cdk/aws-elasticloadbalancingv2-actions": "^1.111.0",
+    "@aws-cdk/aws-elasticloadbalancingv2-targets": "^1.111.0",
+    "@aws-cdk/aws-iam": "^1.111.0",
+    "@aws-cdk/aws-s3": "^1.111.0",
+    "@aws-cdk/aws-neptune": "^1.111.0",
+    "@aws-cdk/core": "1.111.0",
+    "source-map-support": "^0.5.16"
+  }
+}
