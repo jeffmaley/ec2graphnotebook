@@ -11,25 +11,25 @@
     "cdk": "cdk"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "1.110.0",
-    "@types/jest": "^26.0.10",
-    "@types/node": "10.17.27",
-    "jest": "^26.4.2",
-    "ts-jest": "^26.2.0",
-    "aws-cdk": "1.110.0",
-    "ts-node": "^9.0.0",
-    "typescript": "~3.9.7"
+    "@aws-cdk/assert": "1.114.0",
+    "@types/jest": "^26.0.24",
+    "@types/node": "16.4.0",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.3",
+    "aws-cdk": "1.114.0",
+    "ts-node": "^10.1.0",
+    "typescript": "~4.3.5"
   },
   "dependencies": {
-    "@aws-cdk/aws-cognito": "^1.111.0",
-    "@aws-cdk/aws-ec2": "1.111.0",
-    "@aws-cdk/aws-elasticloadbalancingv2": "1.111.0",
-    "@aws-cdk/aws-elasticloadbalancingv2-actions": "^1.111.0",
-    "@aws-cdk/aws-elasticloadbalancingv2-targets": "^1.111.0",
-    "@aws-cdk/aws-iam": "^1.111.0",
-    "@aws-cdk/aws-s3": "^1.111.0",
-    "@aws-cdk/aws-neptune": "^1.111.0",
-    "@aws-cdk/core": "1.111.0",
-    "source-map-support": "^0.5.16"
+    "@aws-cdk/aws-cognito": "^1.114.0",
+    "@aws-cdk/aws-ec2": "1.114.0",
+    "@aws-cdk/aws-elasticloadbalancingv2": "1.114.0",
+    "@aws-cdk/aws-elasticloadbalancingv2-actions": "^1.114.0",
+    "@aws-cdk/aws-elasticloadbalancingv2-targets": "^1.114.0",
+    "@aws-cdk/aws-iam": "^1.114.0",
+    "@aws-cdk/aws-s3": "^1.114.0",
+    "@aws-cdk/aws-neptune": "^1.114.0",
+    "@aws-cdk/core": "1.114.0",
+    "source-map-support": "^0.5.19"
   }
 }

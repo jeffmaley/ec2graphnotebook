@@ -23,7 +23,6 @@ export class Ec2GraphNotebookStack extends cdk.Stack {
     const cogDomain = process.env.COGDOMAIN || "No Cognito Domain provided";
     const neptuneTagKey = process.env.NEPTUNETAGKEY || "No tag for Neptune cluster provided";
     const neptuneTagValue = process.env.NEPTUNETAGVALUE || "No value for Neptune cluster provided";
-    // const neptuneClusterId = process.env.NEPTUNECLUSTERID || "No Neptune cluster id provided";
 
     // Create VPC and subnets
     // We'll go with defaults for NACL and routing
@@ -85,8 +84,7 @@ export class Ec2GraphNotebookStack extends cdk.Stack {
   // Create security group for ec2 instance and alb
     const ec2SG = new ec2.SecurityGroup(this, 'GraphNotebookSG', {vpc: vpc, allowAllOutbound: true, description: 'Allow access to graph notebook', securityGroupName: 'GraphNotebookSG'});
     const albSG = new ec2.SecurityGroup(this, 'AlbSG', {vpc: vpc, allowAllOutbound: true, description: 'Allow access to Alb', securityGroupName: 'AlbSG'});
-    //ec2SG.addIngressRule(ec2SG, ec2.Port.tcp(443));
-    ec2SG.connections.allowFrom(ec2SG, ec2.Port.tcp(443), 'Allow connections from the ALB');
+    ec2SG.addIngressRule(ec2SG, ec2.Port.tcp(443), 'Allow connections from the ALB');
     albSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow connections from the world');
 
   // Add certificate
@@ -98,7 +96,7 @@ export class Ec2GraphNotebookStack extends cdk.Stack {
     // ALB
     const lb = new elbv2.ApplicationLoadBalancer(this, 'alb-neptune', {vpc: vpc, internetFacing: true, securityGroup: albSG});
     lb.addSecurityGroup(ec2SG);
-    const lbListener = lb.addListener('Listener', {port: 443, certificates: [cert]});
+    const lbListener = lb.addListener('Listener', {port: 443, certificates: [cert], open: false});
     // add cognito auth
     const cogAuth = new elbactions.AuthenticateCognitoAction({next: elbv2.ListenerAction.forward([tg]), userPool: cog.UserPool.fromUserPoolArn(this, 'cogPool', cogUserPoolArn), userPoolClient: cog.UserPoolClient.fromUserPoolClientId(this, 'cogPoolClient', cogUserPoolId), userPoolDomain: cog.UserPoolDomain.fromDomainName(this, 'cogPoolDom', cogDomain), onUnauthenticatedRequest: elbv2.UnauthenticatedAction.AUTHENTICATE, scope: 'openid', sessionCookieName: 'AWSELBAuthSessionCookie', sessionTimeout: cdk.Duration.seconds(604800)});
     lbListener.addAction('cogAuthAction', {action: cogAuth});
